@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo das Palavras - Aprenda Lendo!</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="game-container">
+    <h1>🎮 Jogo da Leitura</h1>
+    
+    <!-- Placar e Nível -->
+    <div class="score-board">
+      <span>Estrelas: <strong id="score">0</strong> ⭐</span>
+    </div>
+
+    <!-- Imagem/Dica do Objeto -->
+    <div class="card-display">
+      <span id="emoji-display" class="emoji">🐶</span>
+    </div>
+
+    <!-- Onde a palavra formada vai aparecer -->
+    <div class="word-target" id="target-container"></div>
+
+    <!-- Opções de Sílabas/Letras para clicar -->
+    <div class="options-container" id="options-container"></div>
+
+    <!-- Feedback com som/efeito -->
+    <div id="feedback" class="feedback"></div>
+
+    <!-- Botão Próximo -->
+    <button id="next-btn" class="btn-next" onclick="nextLevel()" style="display: none;">
+      Próxima Palavra ➔
+    </button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
