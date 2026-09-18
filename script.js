@@ -4,7 +4,22 @@ const wordsList = [
   { word: "GATO", emoji: "🐱", options: ["GA", "TO", "MA", "VA"] },
   { word: "PATO", emoji: "🦆", options: ["PA", "TO", "SA", "LO"] },
   { word: "CASA", emoji: "🏠", options: ["CA", "SA", "BO", "ZA"] },
-  { word: "SOL",  emoji: "☀️", options: ["SO", "L", "RA", "MI"] }
+  { word: "SOL",  emoji: "☀️", options: ["SO", "L", "RA", "MI"] },
+  { word: "BOLA", emoji: "⚽", options: ["BO", "LA", "PA", "TA"] },
+{ word: "GATO", emoji: "🐱", options: ["GA", "TO", "CA", "MA"] },
+{ word: "PATO", emoji: "🦆", options: ["PA", "TO", "RA", "LO"] },
+{ word: "SAPO", emoji: "🐸", options: ["SA", "PO", "FA", "RO"] },
+{ word: "LUA", emoji: "🌙", options: ["LU", "A", "MA", "SOL"] },
+{ word: "PEIXE", emoji: "🐟", options: ["PEI", "XE", "PA", "TO"] },
+{ word: "FOGO", emoji: "🔥", options: ["FO", "GO", "BO", "CA"] },
+{ word: "MESA", emoji: "🪑", options: ["ME", "SA", "RO", "ZA"] },
+{ word: "BOCA", emoji: "👄", options: ["BO", "CA", "PI", "TO"] },
+{ word: "BOLO", emoji: "🎂", options: ["BO", "LO", "BA", "LA"] },
+{ word: "MALA", emoji: "🧳", options: ["MA", "LA", "SA", "PA"] },
+{ word: "VACA", emoji: "🐮", options: ["VA", "CA", "FA", "TA"] },
+{ word: "SUCO", emoji: "🧃", options: ["SU", "CO", "LU", "PO"] },
+{ word: "LIMAO", emoji: "🍋", options: ["LI", "MAO", "PA", "RO"] },
+{ word: "TREM", emoji: "🚂", options: ["TRE", "M", "FO", "PA"] }
 ];
 
 let currentLevel = 0;
