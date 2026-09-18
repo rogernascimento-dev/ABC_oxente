@@ -1,97 +1,126 @@
-root {
-  /* Paleta Neon Aventura (Ben 10 + Cyber Shonen) */
-  --bg-dark: #070b12;
-  --panel-bg: rgba(13, 22, 38, 0.85);
-  --omnitrix-green: #00ff66;
-  --chakra-cyan: #00e5ff;
-  --accent-gold: #ffb700;
-  --danger-red: #ff0055;
-  --text-main: #e2f1ff;
+:root {
+  /* Paleta Corrida Espacial */
+  --space-void: #03050a;
+  --ship-panel: rgba(10, 16, 28, 0.9);
+  --thruster-cyan: #00f0ff;    /* Propulsor de Plasma */
+  --speed-orange: #ff5500;     /* Hiperespaço / Turbo */
+  --nitro-yellow: #ffe600;     /* Energia Max */
+  --text-pure: #ffffff;
+  --text-hud: #a0c0e0;
   
-  --font-header: 'Orbitron', sans-serif;
-  --font-body: 'Rajdhani', sans-serif;
+  --font-race: 'Russo One', sans-serif;
+  --font-hud: 'Exo 2', sans-serif;
   
-  --glow-green: 0 0 15px rgba(0, 255, 102, 0.6);
-  --glow-cyan: 0 0 15px rgba(0, 229, 255, 0.6);
+  --glow-plasma: 0 0 18px rgba(0, 240, 255, 0.8);
+  --glow-turbo: 0 0 18px rgba(255, 85, 0, 0.8);
 }
 
-/* Background com padrão de grade cibernética */
+/* Fundo: Vácuo Espacial com Rastros de Velocidade (Speed Lines) */
 body {
-  background-color: var(--bg-dark);
+  background-color: var(--space-void);
   background-image: 
-    radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.08) 0%, transparent 80%),
-    linear-gradient(rgba(0, 255, 102, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 102, 0.05) 1px, transparent 1px);
-  background-size: 100% 100%, 30px 30px, 30px 30px;
-  color: var(--text-main);
-  font-family: var(--font-body);
-  font-size: 1.1rem;
+    /* Nebulosa distante */
+    radial-gradient(circle at 80% 20%, rgba(255, 85, 0, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(0, 240, 255, 0.12) 0%, transparent 50%),
+    /* Linhas de aceleração horizontal */
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 80px 100%;
+  color: var(--text-pure);
+  font-family: var(--font-hud);
+  font-style: italic; /* Inclinação dinâmica de velocidade */
   margin: 0;
-  padding: 20px;
+  padding: 30px;
 }
 
-/* Painéis de Conteúdo (Cards/Tabelas/Containers) */
+/* Painéis de Controle de Nave (HUD Slanted / Inclinado) */
 .card, .container, table {
-  background: var(--panel-bg);
-  border: 2px solid var(--chakra-cyan);
-  /* Corta os cantos para dar visual de HUD futurista */
+  background: var(--ship-panel);
+  border: none;
+  border-left: 4px solid var(--thruster-cyan);
+  border-right: 2px solid var(--speed-orange);
+  /* Formato aerodinâmico assimétrico */
   clip-path: polygon(
-    0 15px, 15px 0, 
-    calc(100% - 15px) 0, 100% 15px, 
-    100% calc(100% - 15px), calc(100% - 15px) 100%, 
-    15px 100%, 0 calc(100% - 15px)
+    20px 0, 100% 0, 
+    100% calc(100% - 20px), calc(100% - 20px) 100%, 
+    0 100%, 0 20px
   );
-  box-shadow: var(--glow-cyan);
-  backdrop-filter: blur(5px);
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-/* Títulos estilo HUD de Batalha */
-h1, h2, h3 {
-  font-family: var(--font-header);
-  text-transform: uppercase;
-  color: var(--omnitrix-green);
-  text-shadow: 0 0 10px var(--omnitrix-green);
-  letter-spacing: 2px;
-  margin-top: 0;
-}
-
-/* Botões com corte chanfrado e brilho ao passar o mouse */
-button, .btn {
-  font-family: var(--font-header);
-  background: transparent;
-  color: var(--omnitrix-green);
-  border: 2px solid var(--omnitrix-green);
-  padding: 12px 24px;
-  text-transform: uppercase;
-  font-weight: 900;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  box-shadow: var(--glow-plasma);
+  backdrop-filter: blur(8px);
+  padding: 25px;
+  margin-bottom: 25px;
   position: relative;
 }
 
-button:hover, .btn:hover {
-  background: var(--omnitrix-green);
-  color: var(--bg-dark);
-  box-shadow: var(--glow-green);
-  transform: translateY(-2px) scale(1.02);
+/* Linha Neon superior simulando o visor da nave */
+.card::before, .container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--thruster-cyan), var(--speed-orange));
 }
 
-/* Inputs / Campos de Texto estilo Scanner */
-input, select, textarea {
-  background: rgba(0, 0, 0, 0.6);
-  border: 1px solid var(--chakra-cyan);
+/* Títulos estilo Cronomêtro / Velocímetro */
+h1, h2, h3 {
+  font-family: var(--font-race);
+  font-style: italic;
+  text-transform: uppercase;
   color: #fff;
-  font-family: var(--font-body);
+  letter-spacing: 3px;
+  text-shadow: 
+    2px 2px 0px var(--speed-orange),
+    -2px -2px 0px var(--thruster-cyan);
+  margin-top: 0;
+}
+
+/* Botão TURBO / PROPULSOR */
+button, .btn {
+  font-family: var(--font-race);
+  font-style: italic;
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, var(--speed-orange) 0%, #cc2200 100%);
+  color: #fff;
+  border: none;
+  padding: 14px 32px;
+  text-transform: uppercase;
+  cursor: pointer;
+  /* Trapezóide de corrida */
+  transform: skewX(-15deg);
+  box-shadow: var(--glow-turbo);
+  transition: all 0.15s ease-out;
+  display: inline-block;
+}
+
+/* Efeito ao acelerar (Hover) */
+button:hover, .btn:hover {
+  background: linear-gradient(135deg, var(--nitro-yellow) 0%, var(--speed-orange) 100%);
+  color: #000;
+  box-shadow: 0 0 25px var(--nitro-yellow);
+  transform: skewX(-15deg) scale(1.08) translateX(5px);
+}
+
+/* Texto interno do botão para compensar a inclinação */
+button span, .btn span {
+  display: block;
+  transform: skewX(15deg);
+}
+
+/* Inputs / Controles da Nave */
+input, select, textarea {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--thruster-cyan);
+  color: var(--nitro-yellow);
+  font-family: var(--font-hud);
+  font-weight: 700;
   font-size: 1.1rem;
-  padding: 10px 15px;
+  padding: 12px;
+  transform: skewX(-10deg);
   outline: none;
-  border-radius: 0;
 }
 
 input:focus, select:focus, textarea:focus {
-  border-color: var(--omnitrix-green);
-  box-shadow: var(--glow-green);
+  border-color: var(--nitro-yellow);
+  box-shadow: 0 0 15px var(--nitro-yellow);
 }
