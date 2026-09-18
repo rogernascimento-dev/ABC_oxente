@@ -1,121 +1,97 @@
-* {
-  box-sizing: border-box;
-  font-family: 'Comic Sans MS', 'Chalkboard SE', 'Arial', sans-serif;
+:root {
+  /* Paleta Neon Aventura (Ben 10 + Cyber Shonen) */
+  --bg-dark: #070b12;
+  --panel-bg: rgba(13, 22, 38, 0.85);
+  --omnitrix-green: #00ff66;
+  --chakra-cyan: #00e5ff;
+  --accent-gold: #ffb700;
+  --danger-red: #ff0055;
+  --text-main: #e2f1ff;
+  
+  --font-header: 'Orbitron', sans-serif;
+  --font-body: 'Rajdhani', sans-serif;
+  
+  --glow-green: 0 0 15px rgba(0, 255, 102, 0.6);
+  --glow-cyan: 0 0 15px rgba(0, 229, 255, 0.6);
 }
 
+/* Background com padrão de grade cibernética */
 body {
-  background-color: #f0f9ff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  background-color: var(--bg-dark);
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.08) 0%, transparent 80%),
+    linear-gradient(rgba(0, 255, 102, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 102, 0.05) 1px, transparent 1px);
+  background-size: 100% 100%, 30px 30px, 30px 30px;
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 1.1rem;
   margin: 0;
+  padding: 20px;
 }
 
-.game-container {
-  background: white;
-  padding: 30px;
-  border-radius: 25px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  text-align: center;
-  max-width: 450px;
-  width: 90%;
-  border: 4px solid #4bc0c0;
-}
-
-h1 {
-  color: #ff6b6b;
-  margin-top: 0;
-}
-
-.score-board {
-  font-size: 1.2rem;
-  color: #48dbfb;
-  margin-bottom: 15px;
-}
-
-.emoji {
-  font-size: 5rem;
-  display: block;
-  margin: 10px 0;
-  animation: bounce 2s infinite;
-}
-
-/* Animação do emoji */
-@keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.word-target {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  min-height: 60px;
-  margin: 20px 0;
-  padding: 10px;
-  background-color: #eef2f5;
-  border-radius: 12px;
-  border: 2px dashed #b2bec3;
-}
-
-.letter-box {
-  width: 50px;
-  height: 50px;
-  background-color: #ff9ff3;
-  color: white;
-  font-size: 1.8rem;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  box-shadow: 0 4px #db90db;
-}
-
-.options-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
+/* Painéis de Conteúdo (Cards/Tabelas/Containers) */
+.card, .container, table {
+  background: var(--panel-bg);
+  border: 2px solid var(--chakra-cyan);
+  /* Corta os cantos para dar visual de HUD futurista */
+  clip-path: polygon(
+    0 15px, 15px 0, 
+    calc(100% - 15px) 0, 100% 15px, 
+    100% calc(100% - 15px), calc(100% - 15px) 100%, 
+    15px 100%, 0 calc(100% - 15px)
+  );
+  box-shadow: var(--glow-cyan);
+  backdrop-filter: blur(5px);
+  padding: 20px;
   margin-bottom: 20px;
 }
 
-.option-btn {
-  background-color: #54a0ff;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  border-radius: 12px;
+/* Títulos estilo HUD de Batalha */
+h1, h2, h3 {
+  font-family: var(--font-header);
+  text-transform: uppercase;
+  color: var(--omnitrix-green);
+  text-shadow: 0 0 10px var(--omnitrix-green);
+  letter-spacing: 2px;
+  margin-top: 0;
+}
+
+/* Botões com corte chanfrado e brilho ao passar o mouse */
+button, .btn {
+  font-family: var(--font-header);
+  background: transparent;
+  color: var(--omnitrix-green);
+  border: 2px solid var(--omnitrix-green);
+  padding: 12px 24px;
+  text-transform: uppercase;
+  font-weight: 900;
   cursor: pointer;
-  box-shadow: 0 5px #2e86de;
-  transition: transform 0.1s;
+  transition: all 0.2s ease-in-out;
+  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
+  position: relative;
 }
 
-.option-btn:active {
-  transform: translateY(4px);
-  box-shadow: 0 1px #2e86de;
+button:hover, .btn:hover {
+  background: var(--omnitrix-green);
+  color: var(--bg-dark);
+  box-shadow: var(--glow-green);
+  transform: translateY(-2px) scale(1.02);
 }
 
-.feedback {
-  font-size: 1.4rem;
-  font-weight: bold;
-  height: 30px;
-  margin-bottom: 15px;
+/* Inputs / Campos de Texto estilo Scanner */
+input, select, textarea {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--chakra-cyan);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  padding: 10px 15px;
+  outline: none;
+  border-radius: 0;
 }
 
-.correct { color: #1dd1a1; }
-.wrong { color: #ff6b6b; }
-
-.btn-next {
-  background-color: #1dd1a1;
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  font-size: 1.2rem;
-  border-radius: 20px;
-  cursor: pointer;
-  box-shadow: 0 4px #10ac84;
+input:focus, select:focus, textarea:focus {
+  border-color: var(--omnitrix-green);
+  box-shadow: var(--glow-green);
 }
