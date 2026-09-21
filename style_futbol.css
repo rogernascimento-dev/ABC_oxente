@@ -1,0 +1,455 @@
+  /* ==========================================
+       STYLE2.CSS - TEMA FUTEBOL PARA JOGO DE LEITURA
+       ========================================== */
+    
+    :root {
+      --grass-dark: #1b5e20;
+      --grass-light: #2e7d32;
+      --grass-stripe: #388e3c;
+      --line-white: rgba(255, 255, 255, 0.85);
+      --line-glow: rgba(255, 255, 255, 0.4);
+      --gold-led: #ffd700;
+      --red-card: #e53935;
+      --yellow-card: #fdd835;
+      --neon-green: #00e676;
+      --stadium-dark: #0f172a;
+      --stadium-light: #1e293b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      font-family: 'Rajdhani', sans-serif;
+      min-height: 100vh;
+      background-color: #0b220d;
+      /* Gramado do Campo com listras horizontais de corte de grama */
+      background-image: 
+        repeating-linear-gradient(
+          0deg,
+          #1b4313,
+          #1b4313 40px,
+          #235419 40px,
+          #235419 80px
+        );
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      color: #ffffff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Refletores do Estádio (Luzes nas pontas superiores) */
+    body::before, body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0) 70%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    body::before { left: -100px; top: -100px; }
+    body::after { right: -100px; top: -100px; }
+
+    /* Container Principal do Jogo - Campo de Futebol */
+    .game-container {
+      position: relative;
+      width: 100%;
+      max-width: 650px;
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+      border: 8px solid #ffffff;
+      border-radius: 28px;
+      padding: 25px 20px;
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.7),
+        inset 0 0 40px rgba(0, 0, 0, 0.4),
+        0 0 20px rgba(255, 255, 255, 0.2);
+      text-align: center;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    /* Marcações do Campo de Futebol no Fundo do Container */
+    .game-container::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      /* Linhas do campo: Círculo central e linha central */
+      background: 
+        radial-gradient(circle at center, transparent 70px, var(--line-white) 71px, transparent 73px),
+        linear-gradient(90deg, transparent calc(50% - 2px), var(--line-white) calc(50% - 2px), var(--line-white) calc(50% + 2px), transparent calc(50% + 2px));
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    /* Título Principal */
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #ffffff;
+      text-shadow: 
+        0 0 10px rgba(0, 230, 118, 0.8),
+        2px 2px 4px rgba(0,0,0,0.8);
+      margin-bottom: 18px;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1::after {
+      content: ' ⚽';
+    }
+
+    /* Placar Estilo LED Eletrônico do Estádio */
+    .score-board {
+      background: #090d16;
+      border: 3px solid #334155;
+      border-radius: 16px;
+      padding: 10px 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      box-shadow: 
+        inset 0 0 15px rgba(0, 0, 0, 0.9),
+        0 4px 12px rgba(0, 0, 0, 0.5),
+        0 0 10px rgba(255, 215, 0, 0.2);
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .score-board span {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .score-board strong {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: var(--gold-led);
+      text-shadow: 0 0 12px rgba(255, 215, 0, 0.9);
+      margin: 0 4px;
+    }
+
+    /* Exibidor da Dica / Imagem do Card (Telão do Campo) */
+    .card-display {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 22px auto;
+      background: radial-gradient(circle, #2e7d32 0%, #154d19 100%);
+      border: 5px solid #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 
+        0 8px 25px rgba(0, 0, 0, 0.5),
+        inset 0 0 20px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(255, 255, 255, 0.4);
+      z-index: 3;
+      transition: transform 0.3s ease;
+    }
+
+    .card-display:hover {
+      transform: scale(1.05) rotate(3deg);
+    }
+
+    /* Borda pontilhada interna estilo círculo central */
+    .card-display::before {
+      content: '';
+      position: absolute;
+      width: 118px;
+      height: 118px;
+      border: 2px dashed rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      animation: rotateCircle 20s linear infinite;
+    }
+
+    @keyframes rotateCircle {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .emoji {
+      font-size: 4.5rem;
+      filter: drop-shadow(0 6px 8px rgba(0,0,0,0.4));
+      animation: bounceEmoji 2s infinite ease-in-out;
+    }
+
+    @keyframes bounceEmoji {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* Target Container - Área onde as letras formam a palavra (Rede do Gol) */
+    .word-target {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      min-height: 75px;
+      padding: 12px 18px;
+      margin-bottom: 25px;
+      background: rgba(15, 23, 42, 0.4);
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      /* Padrão de textura de Rede de Gol */
+      background-image: 
+        linear-gradient(45deg, rgba(255,255,255,0.08) 25%, transparent 25%), 
+        linear-gradient(-45deg, rgba(255,255,255,0.08) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(255,255,255,0.08) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(255,255,255,0.08) 75%);
+      background-size: 16px 16px;
+      background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+      border-radius: 18px;
+      box-shadow: inset 0 4px 12px rgba(0,0,0,0.6);
+      position: relative;
+      z-index: 3;
+    }
+
+    /* Slots Vazios ou Preenchidos na Rede */
+    .letter-slot {
+      width: 55px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 3px dashed rgba(255, 255, 255, 0.7);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.3);
+      transition: all 0.25s ease;
+    }
+
+    .letter-slot.filled {
+      background: linear-gradient(135deg, #00e676 0%, #1b5e20 100%);
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 230, 118, 0.5), inset 0 2px 4px rgba(255,255,255,0.6);
+      transform: scale(1.05);
+      animation: popSlot 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    @keyframes popSlot {
+      0% { transform: scale(0.7); }
+      100% { transform: scale(1.05); }
+    }
+
+    /* Opções de Sílabas/Letras - Bolas de Futebol */
+    .options-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 3;
+    }
+
+    .option-btn {
+      position: relative;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #e2e8f0 60%, #94a3b8 100%);
+      border: 3px solid #1e293b;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #0f172a;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 
+        0 8px 15px rgba(0, 0, 0, 0.5),
+        inset -4px -4px 8px rgba(0, 0, 0, 0.3),
+        inset 4px 4px 8px rgba(255, 255, 255, 0.9);
+      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      outline: none;
+    }
+
+    /* Desenho de Gomos da Bola de Futebol via Pseudo-elemento */
+    .option-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 22px; height: 22px;
+      background: #0f172a;
+      clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+      opacity: 0.15;
+      pointer-events: none;
+      transition: transform 0.3s ease;
+    }
+
+    .option-btn:hover {
+      transform: translateY(-8px) scale(1.1) rotate(12deg);
+      box-shadow: 
+        0 15px 20px rgba(0, 0, 0, 0.6),
+        0 0 15px rgba(255, 255, 255, 0.6);
+      background: radial-gradient(circle at 35% 35%, #ffffff 0%, #f1f5f9 60%, #cbd5e1 100%);
+    }
+
+    .option-btn:hover::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    .option-btn:active {
+      transform: translateY(-2px) scale(0.95);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .option-btn.disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: scale(0.9);
+      box-shadow: none;
+      filter: grayscale(1);
+    }
+
+    /* Feedback Display (Cartões do Juiz & Mensagem Gol) */
+    .feedback {
+      min-height: 48px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 3;
+    }
+
+    .feedback.gol {
+      color: #ffffff;
+      background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+      border: 2px solid #86efac;
+      padding: 8px 16px;
+      box-shadow: 0 0 20px rgba(34, 197, 94, 0.8);
+      animation: goalPulse 0.6s infinite alternate;
+    }
+
+    @keyframes goalPulse {
+      from { transform: scale(1); }
+      to { transform: scale(1.06); }
+    }
+
+    .feedback.erro {
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--red-card) 0%, #b91c1c 100%);
+      border: 2px solid #fca5a5;
+      padding: 8px 16px;
+      box-shadow: 0 0 15px rgba(229, 57, 53, 0.7);
+      animation: shake 0.4s ease-in-out;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-10px); }
+      40%, 80% { transform: translateX(10px); }
+    }
+
+    /* Botão Próxima Palavra - Estilo Apito do Juiz / Botão Campeão */
+    .btn-next {
+      background: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
+      color: #0f172a;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      padding: 14px 32px;
+      border: 3px solid #ffffff;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 
+        0 8px 20px rgba(251, 133, 0, 0.5),
+        0 4px 0px #b55e00;
+      transition: all 0.2s ease;
+      position: relative;
+      z-index: 3;
+      margin-top: 5px;
+      display: inline-block;
+    }
+
+    .btn-next:hover {
+      transform: translateY(-3px);
+      box-shadow: 
+        0 12px 25px rgba(251, 133, 0, 0.7),
+        0 6px 0px #b55e00;
+      background: linear-gradient(135deg, #ffc300 0%, #ffb703 100%);
+    }
+
+    .btn-next:active {
+      transform: translateY(2px);
+      box-shadow: 
+        0 4px 10px rgba(251, 133, 0, 0.4),
+        0 1px 0px #b55e00;
+    }
+
+    /* Efeito de Confete do Gol */
+    .confetti-particle {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      pointer-events: none;
+      z-index: 99;
+      animation: fall 2.5s linear forwards;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* Responsividade */
+    @media (max-width: 480px) {
+      .game-container {
+        padding: 18px 12px;
+      }
+      h1 {
+        font-size: 1.4rem;
+      }
+      .card-display {
+        width: 110px;
+        height: 110px;
+      }
+      .emoji {
+        font-size: 3.5rem;
+      }
+      .letter-slot {
+        width: 45px;
+        height: 50px;
+        font-size: 1.4rem;
+      }
+      .option-btn {
+        width: 58px;
+        height: 58px;
+        font-size: 1.1rem;
+      }
+    }
