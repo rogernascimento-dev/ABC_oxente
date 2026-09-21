@@ -7,7 +7,7 @@ const wordsList = [
 { word: "SOL",  emoji: "☀️", options: ["SO", "L", "RA", "MI"] },
 { word: "LUA", emoji: "🌙", options: ["LU", "A", "MA", "SOL"] },
 { word: "BONECA", emoji: "🪆", options: ["BO", "NE", "CA", "TA"] },
-{ word: "PIPOCA", emoji: "🍿", options: ["PO", "PO", "CA", "MA"] },
+{ word: "PIPOCA", emoji: "🍿", options: ["PO", "PI", "CA", "MA"] },
 { word: "FOGO", emoji: "🔥", options: ["FO", "GO", "BO", "CA"] },
 { word: "BOCA", emoji: "👄", options: ["BO", "CA", "PI", "TO"] },
 { word: "BOLO", emoji: "🎂", options: ["BO", "LO", "BA", "LA"] },
